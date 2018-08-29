@@ -1,0 +1,10 @@
+  <p>{{recipe.title}}</p>
+  <a [routerLink]="['']">Back Home</a>
+  <button (click)="deleteRecipe(recipe._id)" [routerLink]="['']">Delete</button>
+  <button (click)="showUpdate()" >Update</button>
+<div *ngIf="update">
+  <form>
+    <input type="text" [(ngModel)]="recipe.title" name="title">
+    <button type="button" (click)="updateRecipe(recipe._id)" [routerLink]="['']">Update</button>
+  </form>
+</div>

@@ -8,34 +8,34 @@ const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 const multer = require("multer");
 
-const storage = cloudinaryStorage({
-  cloudinary,
-  folder: "my-images",
-  allowedFormats: ["jpg", "png", "gif"]
-});
+// const storage = cloudinaryStorage({
+//   cloudinary,
+//   folder: "my-images",
+//   allowedFormats: ["jpg", "png", "gif"]
+// });
 
-const parser = multer({ storage });
+// const parser = multer({ storage });
 
-router.post("/recipe", parser.single("picture"), function(req, res, next) {
-  const { file } = req;
+router.post("/create", function(req, res) {
+  // const { file } = req;
   const recipe = new Recipe({
-    creator: req.body.creator,
-    creatorId: req.body.creatorId,
+    // creator: req.body.creator,
+    // creatorId: req.body.creatorId,
     title: req.body.title,
-    type: req.body.type,
-    difficulty: req.body.difficulty,
-    budget: req.body.budget,
-    steps: req.body.steps,
-    picture: file.secure_url,
-    advisedDrink: req.body.advisedDrink,
-    ingredients: req.body.ingredients
+    // type: req.body.type,
+    // difficulty: req.body.difficulty,
+    // budget: req.body.budget,
+    // steps: req.body.steps,
+    // picture: file.secure_url,
+    // advisedDrink: req.body.advisedDrink,
+    // ingredients: req.body.ingredients
   });
   recipe.save().then(savedRecipe => {
     res.json(savedRecipe);
   });
 });
 
-router.get("/recipe", function(req, res, next) {
+router.get("/recipes", function(req, res, next) {
   Recipe.find({}, (err, recipes) => {
     if (err) {
       res.json(err);
@@ -55,9 +55,8 @@ router.get("/recipe/:id", function(req, res, next) {
   });
 });
 
-router.delete("/profile/:id", function(req, res, next) {
+router.delete("/recipe/:id", function(req, res, next) {
   const recipeId = req.params.id;
-
   Recipe.findByIdAndRemove(recipeId, (err, recipe) => {
     if (err) {
       res.json(err);

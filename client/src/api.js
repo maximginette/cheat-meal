@@ -85,12 +85,12 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
-  // submitRecipe(recipeInfo) {
-  //   return service
-  //     .post("/recipe", recipeInfo)
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
+  submitRecipe(recipeInfo) {
+    return service
+      .post("/recipe", recipeInfo)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
   getSolo(id) {
     return service
       .get(`/recipe/${id}`)

@@ -1,0 +1,6 @@
+<div *ngFor="let recipe of recipes">
+  {{recipe.title}}
+  <a [routerLink]="['recipe', recipe._id]">View Details</a>
+</div>
+
+<a [routerLink]="['create']">Create</a>
